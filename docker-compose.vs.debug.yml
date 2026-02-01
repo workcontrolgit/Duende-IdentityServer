@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  duendeidentityserver.admin:
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  "bin/Debug/net9.0/DuendeIdentityServer.Admin.dll" /seed'
+
+  duendeidentityserver.admin.api:
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  duendeidentityserver.sts.identity:
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
