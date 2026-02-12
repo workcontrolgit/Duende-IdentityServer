@@ -7,6 +7,11 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A1B2C3D4-E5F6-4A5B-8C9D-0E1F2A3B4C5D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Running-Duende-IdentityServer-In-Docker.md = docs\Running-Duende-IdentityServer-In-Docker.md
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuendeIdentityServer.Admin", "src\DuendeIdentityServer.Admin\DuendeIdentityServer.Admin.csproj", "{7E8CDB88-91D3-4211-9FF5-E74CB6C6A6D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuendeIdentityServer.Admin.EntityFramework.MySql", "src\DuendeIdentityServer.Admin.EntityFramework.MySql\DuendeIdentityServer.Admin.EntityFramework.MySql.csproj", "{3BD24164-0E8A-48D5-A7A0-91D52C209B65}"

@@ -1,134 +1,220 @@
 ﻿{
-    "IdentityServerData": {
-        "IdentityResources": [
-            {
-                "Name": "roles",
-                "Enabled": true,
-                "DisplayName": "Roles",
-                "UserClaims": [
-                    "role"
-                ]
-            },
-            {
-                "Name": "openid",
-                "Enabled": true,
-                "Required": true,
-                "DisplayName": "Your user identifier",
-                "UserClaims": [
-                    "sub"
-                ]
-            },
-            {
-                "Name": "profile",
-                "Enabled": true,
-                "DisplayName": "User profile",
-                "Description": "Your user profile information (first name, last name, etc.)",
-                "Emphasize": true,
-                "UserClaims": [
-                    "name",
-                    "family_name",
-                    "given_name",
-                    "middle_name",
-                    "nickname",
-                    "preferred_username",
-                    "profile",
-                    "picture",
-                    "website",
-                    "gender",
-                    "birthdate",
-                    "zoneinfo",
-                    "locale",
-                    "updated_at"
-                ]
-            },
-            {
-                "Name": "email",
-                "Enabled": true,
-                "DisplayName": "Your email address",
-                "Emphasize": true,
-                "UserClaims": [
-                    "email",
-                    "email_verified"
-                ]
-            },
-            {
-                "Name": "address",
-                "Enabled": true,
-                "DisplayName": "Your address",
-                "Emphasize": true,
-                "UserClaims": [
-                    "address"
-                ]
-            }
-        ],
-        "ApiScopes": [
-            {
-                "Name": "MyClientId_api",
-                "DisplayName": "MyClientId_api",
-                "Required": true,
-                "UserClaims": [
-                    "role",
-                    "name"
-                ]
-            }
-        ],
-        "ApiResources": [
-            {
-                "Name": "MyClientId_api",
-                "Scopes": [
-                    "MyClientId_api"
-                ]
-            }
-        ],
-        "Clients": [
-            {
-                "ClientId": "MyClientId",
-                "ClientName": "MyClientId",
-                "ClientUri": "https://admin.skoruba.local",
-                "AllowedGrantTypes": [
-                    "authorization_code"
-                ],
-                "RequirePkce": true,
-                "ClientSecrets": [
-                    {
-                        "Value": "MyClientSecret"
-                    }
-                ],
-                "RedirectUris": [
-                    "https://admin.skoruba.local/signin-oidc"
-                ],
-                "FrontChannelLogoutUri": "https://admin.skoruba.local/signout-oidc",
-                "PostLogoutRedirectUris": [
-                    "https://admin.skoruba.local/signout-callback-oidc"
-                ],
-                "AllowedCorsOrigins": [
-                    "https://admin.skoruba.local"
-                ],
-                "AllowedScopes": [
-                    "openid",
-                    "email",
-                    "profile",
-                    "roles"
-                ]
-            },
-            {
-                "ClientId": "MyClientId_api_swaggerui",
-                "ClientName": "MyClientId_api_swaggerui",
-                "AllowedGrantTypes": [
-                    "authorization_code"
-                ],
-                "RequireClientSecret": false,
-                "RequirePkce": true,
-                "RedirectUris": [
-                    "https://admin-api.skoruba.local/swagger/oauth2-redirect.html"
-                ],
-                "AllowedScopes": [
-                    "MyClientId_api"
-                ],
-                "AllowedCorsOrigins": [
-                    "https://admin-api.skoruba.local"
-                ]
-            }
+  "IdentityServerData": {
+    "IdentityResources": [
+      {
+        "Name": "roles",
+        "Enabled": true,
+        "DisplayName": "Roles",
+        "UserClaims": [
+          "role"
         ]
-    }
+      },
+      {
+        "Name": "openid",
+        "Enabled": true,
+        "Required": true,
+        "DisplayName": "Your user identifier",
+        "UserClaims": [
+          "sub"
+        ]
+      },
+      {
+        "Name": "profile",
+        "Enabled": true,
+        "DisplayName": "User profile",
+        "Description": "Your user profile information (first name, last name, etc.)",
+        "Emphasize": true,
+        "UserClaims": [
+          "role",
+          "name",
+          "family_name",
+          "given_name",
+          "middle_name",
+          "nickname",
+          "preferred_username",
+          "profile",
+          "picture",
+          "website",
+          "gender",
+          "birthdate",
+          "zoneinfo",
+          "locale",
+          "updated_at"
+        ]
+      },
+      {
+        "Name": "email",
+        "Enabled": true,
+        "DisplayName": "Your email address",
+        "Emphasize": true,
+        "UserClaims": [
+          "email",
+          "email_verified"
+        ]
+      },
+      {
+        "Name": "address",
+        "Enabled": true,
+        "DisplayName": "Your address",
+        "Emphasize": true,
+        "UserClaims": [
+          "address"
+        ]
+      }
+    ],
+    "ApiScopes": [
+      {
+        "Name": "MyClientId_api",
+        "DisplayName": "MyClientId_api",
+        "Required": true,
+        "UserClaims": [
+          "role",
+          "name"
+        ]
+      },
+      {
+        "Name": "app.api.talentmanagement.write",
+        "DisplayName": "app.api.employeeprofile.write",
+        "Required": true,
+        "UserClaims": [
+          "role",
+          "name"
+        ]
+      },
+      {
+        "Name": "app.api.talentmanagement.read",
+        "DisplayName": "app.api.employeeprofile.read",
+        "Required": true,
+        "UserClaims": [
+          "role",
+          "name"
+        ]
+      }
+
+    ],
+    "ApiResources": [
+      {
+        "Name": "MyClientId_api",
+        "Scopes": [
+          "MyClientId_api"
+        ]
+      },
+      {
+        "Name": "app.api.talentmanagement",
+        "Scopes": [
+          "app.api.talentmanagement.read",
+          "app.api.talentmanagement.write"
+        ]
+      }
+    ],
+    "Clients": [
+      {
+        "ClientId": "MyClientId",
+        "ClientName": "MyClientId",
+        "ClientUri": "https://localhost:44303",
+        "AllowedGrantTypes": [
+          "authorization_code"
+        ],
+        "RequirePkce": true,
+        "ClientSecrets": [
+          {
+            "Value": "MyClientSecret"
+          }
+        ],
+        "RedirectUris": [
+          "https://localhost:44303/signin-oidc",
+          "https://cat-token-admin.azurewebsites.net/signin-oidc"
+        ],
+        "FrontChannelLogoutUri": "https://localhost:44303/signout-oidc",
+        "PostLogoutRedirectUris": [
+          "https://localhost:44303/signout-callback-oidc",
+          "https://cat-token-admin.azurewebsites.net/signout-callback-oidc"
+        ],
+        "AllowedCorsOrigins": [
+          "https://localhost:44303",
+          "https://cat-token-admin.azurewebsites.net"
+        ],
+        "AllowedScopes": [
+          "openid",
+          "email",
+          "profile",
+          "roles"
+        ]
+      },
+      {
+        "ClientId": "TalentManagement",
+        "ClientName": "Talent Management Demo Angular App",
+        "ClientUri": "http://localhost:4200",
+        "AllowedGrantTypes": [
+          "authorization_code"
+        ],
+        "AlwaysIncludeUserClaimsInIdToken": true,
+        "RequirePkce": true,
+        "AllowOfflineAccess": true,
+        "RequireClientSecret": false,
+        "RedirectUris": [
+          "http://localhost:4200",
+          "https://localhost:4200",
+          "http://localhost:4200/silent-refresh.html",
+          "https://localhost:4200/silent-refresh.html",
+          "http://localhost:4200/callback",
+          "https://localhost:4200/callback"
+        ],
+        "PostLogoutRedirectUris": [
+          "http://localhost:4200",
+          "https://localhost:4200"
+        ],
+        "AllowedCorsOrigins": [
+          "http://localhost:4200",
+          "https://localhost:4200"
+        ],
+        "AllowedScopes": [
+          "openid",
+          "email",
+          "profile",
+          "roles",
+          "app.api.talentmanagement.read",
+          "app.api.talentmanagement.write"
+        ]
+      },
+      {
+        "ClientId": "MyClientId_api_swaggerui",
+        "ClientName": "MyClientId_api_swaggerui",
+        "AllowedGrantTypes": [
+          "authorization_code"
+        ],
+        "RequireClientSecret": false,
+        "RequirePkce": true,
+        "RedirectUris": [
+          "https://localhost:44302/swagger/oauth2-redirect.html",
+          "https://cat-token-adminapi.azurewebsites.net/swagger/oauth2-redirect.html"
+        ],
+        "AllowedScopes": [
+          "MyClientId_api"
+        ],
+        "AllowedCorsOrigins": [
+          "https://localhost:44302",
+          "https://cat-token-adminapi.azurewebsites.net"
+        ]
+      },
+      {
+        "ClientId": "PostmanClient",
+        "ClientName": "Postman Client",
+        "AllowedGrantTypes": [
+          "client_credentials"
+        ],
+        "RequireClientSecret": true,
+        "ClientSecrets": [
+          {
+            "Value": "PostmanClientSecret"
+          }
+        ],
+        "RequirePkce": false,
+        "AllowedScopes": [
+          "app.api.employeeprofile.write",
+          "app.api.employeeprofile.read"
+        ]
+      }
+    ]
+  }
 }
