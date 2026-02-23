@@ -24,7 +24,7 @@ This comprehensive guide walks you through setting up Duende IdentityServer with
 The Docker setup consists of 5 containers working together:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────────[Patch Sts Suport Localhost](../patch-sts-suport-localhost.md)───┐
 │                    nginx-proxy (Port 80/443)                 │
 │                  Reverse Proxy with SSL                      │
 └────────────┬────────────────────────────────┬────────────────┘
