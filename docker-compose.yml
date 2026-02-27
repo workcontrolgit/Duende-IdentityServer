@@ -6,6 +6,7 @@ services:
     ports:
       - '80:80'
       - '443:443'
+      - '44310:443'
     volumes:
       - '/var/run/docker.sock:/tmp/docker.sock:ro'
       - './shared/nginx/vhost.d:/etc/nginx/vhost.d'
@@ -90,13 +91,13 @@ services:
     container_name: skoruba-duende-identityserver-sts-identity
     environment:
       - VIRTUAL_PORT=8080
-      - VIRTUAL_HOST=sts.skoruba.local
+      - VIRTUAL_HOST=sts.skoruba.local,localhost
       - 'ConnectionStrings__ConfigurationDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true;TrustServerCertificate=True'
       - 'ConnectionStrings__PersistedGrantDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true;TrustServerCertificate=True'
       - 'ConnectionStrings__IdentityDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true;TrustServerCertificate=True'
       - 'ConnectionStrings__DataProtectionDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true;TrustServerCertificate=True'
       - 'AdminConfiguration__IdentityAdminBaseUrl=https://admin.skoruba.local'
-      - 'IdentityServerOptions__IssuerUri=https://sts.skoruba.local'
+      - 'IdentityServerOptions__IssuerUri=https://localhost:44310'
       - IdentityServerOptions__KeyManagement__Enabled=true
       - IdentityServerOptions__Events__RaiseErrorEvents=true
       - IdentityServerOptions__Events__RaiseInformationEvents=true

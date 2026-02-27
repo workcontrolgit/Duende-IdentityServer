@@ -24,7 +24,7 @@ This comprehensive guide walks you through setting up Duende IdentityServer with
 The Docker setup consists of 5 containers working together:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────────[Patch Sts Suport Localhost](../patch-sts-suport-localhost.md)───┐
 │                    nginx-proxy (Port 80/443)                 │
 │                  Reverse Proxy with SSL                      │
 └────────────┬────────────────────────────────┬────────────────┘
@@ -386,9 +386,27 @@ Expected: JSON response with IdentityServer metadata.
 | Service | URL | Purpose |
 |---------|-----|---------|
 | **IdentityServer (STS)** | https://sts.skoruba.local | OAuth 2.0 / OIDC authentication server |
+| **IdentityServer (STS localhost mode)** | https://localhost:44310 | STS endpoint for Angular authority `https://localhost:44310` |
 | **Admin UI** | https://admin.skoruba.local | Web interface for managing IdentityServer |
 | **Admin API** | https://admin-api.skoruba.local | REST API with Swagger documentation |
 | **SQL Server** | `localhost:7900` | Direct database access (SSMS, Azure Data Studio) |
+
+### localhost:44310 mode
+
+Use this mode when your SPA authority is configured to `https://localhost:44310`.
+
+1. Keep STS routing enabled for both `sts.skoruba.local` and `localhost` in Docker.
+2. Keep STS issuer set to `https://localhost:44310`.
+3. Verify discovery endpoint:
+
+```bash
+curl -k https://localhost:44310/.well-known/openid-configuration
+```
+
+4. Confirm discovery JSON contains:
+   - `"issuer": "https://localhost:44310"`
+
+This preserves backward compatibility for existing `sts.skoruba.local` host-based routing while allowing localhost authority validation.
 
 ### Default Credentials
 
@@ -442,6 +460,26 @@ You need to do this once for each domain:
 1. Verify certificates exist: `ls shared/nginx/certs/`
 2. Regenerate certificates (see Step 2)
 3. Restart containers: `docker-compose down && docker-compose up -d`
+
+### Issue: "Issuer mismatch" (`invalid_token`, `IDX10205`, or authority metadata validation errors)
+
+**Cause:** STS discovery issuer and client authority do not match exactly.
+
+**Solution:**
+1. Verify STS issuer is `https://localhost:44310`.
+2. Verify Angular authority is `https://localhost:44310`.
+3. Verify discovery endpoint reports `"issuer": "https://localhost:44310"`.
+4. Restart stack after any issuer change: `docker-compose down && docker-compose up -d`.
+
+### Issue: "NET::ERR_CERT_COMMON_NAME_INVALID" or SAN/certificate name mismatch
+
+**Cause:** `localhost` certificate does not contain SAN entries for `DNS:localhost` (and optionally `IP:127.0.0.1`).
+
+**Solution:**
+1. Regenerate `localhost.crt` and `localhost.key` with SAN support.
+2. Confirm cert files exist under `shared/nginx/certs/`.
+3. Restart the nginx proxy container.
+4. Re-test endpoint `https://localhost:44310/.well-known/openid-configuration`.
 
 ### Issue: "Connection to SQL Server failed"
 

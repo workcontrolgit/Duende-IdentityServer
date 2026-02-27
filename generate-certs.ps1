@@ -4,7 +4,8 @@
 $domains = @(
     "sts.skoruba.local",
     "admin.skoruba.local",
-    "admin-api.skoruba.local"
+    "admin-api.skoruba.local",
+    "localhost"
 )
 
 $certPath = "shared\nginx\certs"
@@ -17,9 +18,17 @@ if (!(Test-Path $certPath)) {
 foreach ($domain in $domains) {
     Write-Host "Generating certificate for $domain..." -ForegroundColor Green
 
-    # Generate certificate
+    # Generate certificate with SAN entries.
+    # localhost cert includes 127.0.0.1 to prevent SAN validation issues.
+    $dnsNames = @($domain)
+    $textExtensions = @()
+    if ($domain -eq "localhost") {
+        $textExtensions = @("2.5.29.17={text}DNS=localhost&IPAddress=127.0.0.1")
+    }
+
     $cert = New-SelfSignedCertificate `
-        -DnsName $domain `
+        -DnsName $dnsNames `
+        -TextExtension $textExtensions `
         -CertStoreLocation "cert:\LocalMachine\My" `
         -NotAfter (Get-Date).AddYears(2) `
         -KeyAlgorithm RSA `
