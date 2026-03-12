@@ -122,17 +122,14 @@
           }
         ],
         "RedirectUris": [
-          "https://localhost:44303/signin-oidc",
-          "https://cat-token-admin.azurewebsites.net/signin-oidc"
+          "https://localhost:44303/signin-oidc"
         ],
         "FrontChannelLogoutUri": "https://localhost:44303/signout-oidc",
         "PostLogoutRedirectUris": [
-          "https://localhost:44303/signout-callback-oidc",
-          "https://cat-token-admin.azurewebsites.net/signout-callback-oidc"
+          "https://localhost:44303/signout-callback-oidc"
         ],
         "AllowedCorsOrigins": [
-          "https://localhost:44303",
-          "https://cat-token-admin.azurewebsites.net"
+          "https://localhost:44303"
         ],
         "AllowedScopes": [
           "openid",
@@ -186,15 +183,13 @@
         "RequireClientSecret": false,
         "RequirePkce": true,
         "RedirectUris": [
-          "https://localhost:44302/swagger/oauth2-redirect.html",
-          "https://cat-token-adminapi.azurewebsites.net/swagger/oauth2-redirect.html"
+          "https://localhost:44302/swagger/oauth2-redirect.html"
         ],
         "AllowedScopes": [
           "MyClientId_api"
         ],
         "AllowedCorsOrigins": [
-          "https://localhost:44302",
-          "https://cat-token-adminapi.azurewebsites.net"
+          "https://localhost:44302"
         ]
       },
       {
