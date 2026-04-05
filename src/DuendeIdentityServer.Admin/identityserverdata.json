@@ -122,14 +122,17 @@
           }
         ],
         "RedirectUris": [
-          "https://localhost:44303/signin-oidc"
+          "https://localhost:44303/signin-oidc",
+          "https://app-talent-admin-dev.azurewebsites.net/signin-oidc"
         ],
         "FrontChannelLogoutUri": "https://localhost:44303/signout-oidc",
         "PostLogoutRedirectUris": [
-          "https://localhost:44303/signout-callback-oidc"
+          "https://localhost:44303/signout-callback-oidc",
+          "https://app-talent-admin-dev.azurewebsites.net/signout-callback-oidc"
         ],
         "AllowedCorsOrigins": [
-          "https://localhost:44303"
+          "https://localhost:44303",
+          "https://app-talent-admin-dev.azurewebsites.net"
         ],
         "AllowedScopes": [
           "openid",
@@ -155,15 +158,20 @@
           "http://localhost:4200/silent-refresh.html",
           "https://localhost:4200/silent-refresh.html",
           "http://localhost:4200/callback",
-          "https://localhost:4200/callback"
+          "https://localhost:4200/callback",
+          "https://mango-flower-0ced4011e.4.azurestaticapps.net",
+          "https://mango-flower-0ced4011e.4.azurestaticapps.net/silent-refresh.html",
+          "https://mango-flower-0ced4011e.4.azurestaticapps.net/callback"
         ],
         "PostLogoutRedirectUris": [
           "http://localhost:4200",
-          "https://localhost:4200"
+          "https://localhost:4200",
+          "https://mango-flower-0ced4011e.4.azurestaticapps.net"
         ],
         "AllowedCorsOrigins": [
           "http://localhost:4200",
-          "https://localhost:4200"
+          "https://localhost:4200",
+          "https://mango-flower-0ced4011e.4.azurestaticapps.net"
         ],
         "AllowedScopes": [
           "openid",
