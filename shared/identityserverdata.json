@@ -89,6 +89,11 @@
           "role",
           "name"
         ]
+      },
+      {
+        "Name": "hr-mcp-api",
+        "DisplayName": "HR MCP API",
+        "Required": true
       }
 
     ],
@@ -104,6 +109,12 @@
         "Scopes": [
           "app.api.talentmanagement.read",
           "app.api.talentmanagement.write"
+        ]
+      },
+      {
+        "Name": "hr-mcp",
+        "Scopes": [
+          "hr-mcp-api"
         ]
       }
     ],
@@ -209,6 +220,23 @@
         "AllowedScopes": [
           "app.api.employeeprofile.write",
           "app.api.employeeprofile.read"
+        ]
+      },
+      {
+        "ClientId": "hr-mcp-agent",
+        "ClientName": "HR MCP Agent",
+        "AllowedGrantTypes": [
+          "client_credentials"
+        ],
+        "RequireClientSecret": true,
+        "ClientSecrets": [
+          {
+            "Value": "hr-mcp-agent-secret"
+          }
+        ],
+        "RequirePkce": false,
+        "AllowedScopes": [
+          "hr-mcp-api"
         ]
       }
     ]
